@@ -1,4 +1,6 @@
-﻿// List literal (semicolons, not commas!)
+﻿// 003.fsx
+
+// List literal (semicolons, not commas!)
 let numbers = [1; 2; 3; 4; 5]
 
 // Empty list

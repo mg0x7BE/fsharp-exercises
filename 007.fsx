@@ -1,4 +1,6 @@
-﻿// List.collect (flatMap)
+﻿// 007.fsx
+
+// List.collect (flatMap)
 // Sometimes you want to transform each element into a LIST, then flatten everything.
 // List.collect does both: map + flatten.
 

@@ -1,4 +1,6 @@
-﻿// Recap: List.map
+﻿// 005.fsx
+
+// Recap: List.map
 // List.map applies a function to every element in a list.
 // Syntax: List.map (fun x -> ...) [list]
 

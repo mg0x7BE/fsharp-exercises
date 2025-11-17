@@ -1,4 +1,6 @@
-﻿// Recap: Combining List operations
+﻿// 006.fsx
+
+// Recap: Combining List operations
 // You can chain multiple operations using the pipe operator.
 
 let numbers = [1; 2; 3; 4; 5; 6; 7; 8; 9; 10]

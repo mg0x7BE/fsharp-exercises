@@ -1,4 +1,6 @@
-﻿// String Operations
+﻿// 002.fsx
+
+// String Operations
 let name = "Alice"
 
 // Concatenation (joining strings with +)
