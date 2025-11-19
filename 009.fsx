@@ -34,7 +34,6 @@ let result4 = myFunc 5  // 30
 let removeNegatives = List.filter (fun x -> x >= 0)
 let squareAll = List.map (fun x -> x * x)
 let sumAll = List.sum
-
 let processNumbers = removeNegatives >> squareAll >> sumAll
 
 let numbers = [-2; -1; 0; 1; 2; 3]
