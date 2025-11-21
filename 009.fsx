@@ -39,7 +39,6 @@ let processNumbers = removeNegatives >> squareAll >> sumAll
 let numbers = [-2; -1; 0; 1; 2; 3]
 let result5 = processNumbers numbers  // (0² + 1² + 2² + 3²) = 0 + 1 + 4 + 9 = 14
 
-
 (*
     Your Task:
     1. Create three functions:
