@@ -30,27 +30,19 @@ let result3 = safeDivide 10 2  // Some 5
 let result4 = safeDivide 10 0  // None
 
 
-// Option.map
-// Apply a function to the value inside Some, or do nothing if None
-let doubled = Option.map (fun x -> x * 2) (Some 5)  // Some 10
-let nothing = Option.map (fun x -> x * 2) None      // None
+// Recursive function returning Option
+// Example: Find first positive number in a list
+let rec findPositive list =
+    match list with
+    | [] -> None  // Empty list - not found
+    | head :: tail ->
+        if head > 0 then
+            Some head  // Found it!
+        else
+            findPositive tail  // Keep searching
 
-
-// Option.bind (flatMap)
-// Use when your function returns an Option
-let result5 = 
-    safeDivide 20 2
-    |> Option.bind (fun x -> safeDivide x 2)  // Some 5 (20 / 2 / 2)
-
-let result6 = 
-    safeDivide 20 0
-    |> Option.bind (fun x -> safeDivide x 2)  // None (first division failed)
-
-
-// Option.defaultValue
-// Extract value or use default
-let value1 = Option.defaultValue 0 (Some 42)  // 42
-let value2 = Option.defaultValue 0 None       // 0
+let result5 = findPositive [-1; -2; 3; 4]  // Some 3
+let result6 = findPositive [-1; -2; -3]    // None
 
 
 (*

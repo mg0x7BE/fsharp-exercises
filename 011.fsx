@@ -7,38 +7,39 @@ let safeDivide x y =
     if y = 0 then None
     else Some (x / y)
 
-// Pattern matching on Option
-let describe opt =
-    match opt with
-    | Some value -> $"Result: {value}"
-    | None -> "Error: division by zero"
-
-
-// Option.map - transform the value inside Some
+// Option.map
+// Transforms the value inside Some (if it exists), otherwise returns None
 let doubled = Option.map (fun x -> x * 2) (Some 5)  // Some 10
+let nothing = Option.map (fun x -> x * 2) None      // None
 
+// Chaining with pipe
+let result1 = 
+    safeDivide 20 4
+    |> Option.map (fun x -> x * 3)  // Some 15 (20 / 4 * 3)
 
-// Option.defaultValue - extract value or use default
-let value = Option.defaultValue 0 (safeDivide 10 0)  // 0
+// Option.defaultValue
+// Extracts value from Some, or returns a default if None
+let value1 = Option.defaultValue 0 (Some 42)  // 42
+let value2 = Option.defaultValue 0 None       // 0
 
+let result2 = 
+    safeDivide 10 0
+    |> Option.defaultValue 999  // 999 (division failed)
 
 (*
     Your Task:
-    1. Write a function findLast that:
-       - Takes a predicate function (int -> bool)
-       - Takes a list of integers
-       - Returns Some (last element matching predicate) or None if not found
-       - Use recursion and pattern matching
+    1. Write a function findFirst (use your solution from 010a.fsx or rewrite it)
     
-    2. Test it with:
-       - Finding last even number in [1; 2; 3; 4; 5; 6]
-       - Finding last number > 100 in [10; 20; 30]
+    2. Find the first number > 5 in the list [1; 2; 3; 7; 8; 9]
     
-    3. Print both results with pattern matching.
+    3. Use Option.map to square the result
     
-    Expected output:
-    - Last even: 6
-    - Last > 100: Not found
+    4. Use Option.defaultValue to provide 0 if nothing was found
     
-    Hint: You need to search the ENTIRE list, not stop at first match!
+    5. Print the final value
+    
+    Expected output: 49
+    (First number > 5 is 7, squared = 49)
+    
+    If list was [1; 2; 3], output should be: 0
 *)
