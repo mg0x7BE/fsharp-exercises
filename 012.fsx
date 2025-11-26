@@ -43,20 +43,18 @@ let result5 =
 
 (*
     Your Task:
-    1. Use your safeDivide function (or copy from examples above)
+    1. Use safeDivide function (copy from examples above)
     
-    2. Start with the number 100
+    2. Start by dividing 100 by 2 using safeDivide
     
-    3. Divide by 2 using Option.bind
+    3. Then divide result by 5 using Option.bind
     
-    4. Divide by 5 using Option.bind
+    4. Then add 10 using Option.map
     
-    5. Add 10 using Option.map
+    5. Use Option.defaultValue to get 0 if any step failed
     
-    6. Use Option.defaultValue to get 0 if any step failed
-    
-    7. Print the result
+    6. Print the result
     
     Expected output: 20
-    (100 / 2 / 5 + 10 = 50 / 5 + 10 = 10 + 10 = 20)
+    (100 / 2 = 50, then 50 / 5 = 10, then 10 + 10 = 20)
 *)
