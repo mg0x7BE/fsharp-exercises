@@ -13,7 +13,7 @@ type OrderStatus =
 
 // Record Type
 type Order = {
-    Customer: Customer$$
+    Customer: Customer
     Status: OrderStatus
     Amount: float
 }
