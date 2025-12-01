@@ -12,7 +12,7 @@ let parseNumber (str: string) =
     match System.Int32.TryParse(str) with
     | (true, num) -> Some num
     | (false, _) -> None
-
+    
 let validNumbers = List.choose parseNumber strings
 // Result: [10; 20; 30] (skips "abc" and "xyz")
 
