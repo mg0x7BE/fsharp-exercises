@@ -41,7 +41,7 @@ let byAgeDesc = List.sortByDescending (fun p -> p.Age) people
 
 // Example: Sort strings by length
 let words = ["cat"; "elephant"; "dog"; "ant"; "bird"]
-let byLength = List.sortBy (fun w -> w.Length) words
+let byLength = List.sortBy (fun (w: string) -> w.Length) words
 // Result: ["ant"; "cat"; "dog"; "bird"; "elephant"]
 
 
