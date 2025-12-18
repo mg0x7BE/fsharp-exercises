@@ -64,7 +64,8 @@ let students =
     3. Use List.filter to keep only products with price > 50
     
     4. Use List.map to create strings in format: "{product}: ${price}"
-    
+       Hint: To format float with 2 decimal places, use: $"{price:F2}"
+
     5. Print the resulting list
     
     Expected output:
