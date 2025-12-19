@@ -40,6 +40,9 @@ let orders = [
       Status = Delivered; Amount = 89.99; Items = ["Webcam"; "Microphone"] }
 ]
 
+// Quick intro to List.sumBy (shorthand for map + sum)
+let totalRevenue = List.sumBy (fun o -> o.Amount) orders
+// Same as: orders |> List.map (fun o -> o.Amount) |> List.sum
 
 // Example 1: Get all delivered orders, sorted by amount
 let deliveredOrders = 
@@ -71,13 +74,14 @@ let allItems =
 // Example 5: Find customer with highest total spending
 let customerSpending = 
     orders
-    |> List.filter (fun o -> o.Status <> Cancelled)  // Exclude cancelled
-    |> List.groupBy (fun o -> o.Customer.Name)
-    |> List.map (fun (name, orders) -> 
-        let total = orders |> List.map (fun o -> o.Amount) |> List.sum
+    |> List.filter (fun o -> o.Status <> Cancelled)
+    |> List.groupBy (fun o -> o.Customer.Id)
+    |> List.map (fun (customerId, customerOrders) -> 
+        let name = (List.head customerOrders).Customer.Name
+        let total = customerOrders |> List.sumBy (fun o -> o.Amount)
         (name, total))
     |> List.sortByDescending snd
-    |> List.head  // Get top spender
+    |> List.head
 
 // Example 6: Orders by status with counts
 let orderStatusSummary = 
@@ -87,31 +91,21 @@ let orderStatusSummary =
 
 
 (*
-    Your Task - Mini Analysis:
+    Your Task:
     
-    1. Calculate the average order amount for ONLY Delivered and Shipped orders
-       (exclude Pending and Cancelled)
-       
-       Steps:
-       - Filter orders to keep only Delivered or Shipped
-       - Extract amounts using List.map
-       - Calculate average: (sum / count)
-       - Hint: Convert to float for division
+    Calculate the average order amount for ONLY Delivered and Shipped orders
+    (exclude Pending and Cancelled)
     
-    2. Find all customers who have placed more than 1 order
-       
-       Steps:
-       - Group orders by Customer.Id (not Name, to handle duplicates properly)
-       - Filter groups where order count > 1
-       - Extract customer names from the groups
-       - Hint: Use List.choose or List.filter + List.map
+    Steps:
+    - Filter orders to keep only Delivered or Shipped
+    - Extract amounts using List.map
+    - Calculate average: (sum / count)
+    - Hint: Convert to float for division
     
-    3. Print both results in format:
-       "Average order value (Delivered/Shipped): ${amount:F2}"
-       "Customers with multiple orders: [names]"
+    Print result in format:
+    "Average order value (Delivered/Shipped): ${amount:F2}"
     
     Expected output:
-    - Average order value (Delivered/Shipped): $110.31
-      (150.50 + 75.00 + 125.75 + 89.99) / 4 = 110.31
-    - Customers with multiple orders: ["Alice"; "Bob"]
+    Average order value (Delivered/Shipped): $110.31
+    (150.50 + 75.00 + 125.75 + 89.99) / 4 = 110.31
 *)
