@@ -5,15 +5,15 @@
 // The CSV contains: ProductName, Category, Price, Quantity
 
 (*
-SAMPLE CSV DATA (save this as "sales.csv" or use it as a string):
+SAMPLE CSV DATA (use it as a string):
 
 ProductName,Category,Price,Quantity
 Laptop,Electronics,999.99,5
 Mouse,Electronics,25.50,15
 Desk,Furniture,299.99,3
 Chair,Furniture,150.00,8
-Keyboard,Electronics,75.00,12
 Monitor,Electronics,350.00,6
+Keyboard,Electronics,75.00,12
 Table,Furniture,450.00,2
 
 *)
@@ -36,27 +36,35 @@ Table,Furniture,450.00,2
 //    - Returns Some SalesRecord if valid, None if invalid
 //    - Hint: Use pattern matching on the array
 //    - Hint: Use System.Double.TryParse for price, System.Int32.TryParse for quantity
+//    - IMPORTANT: Prices use dots as decimal separator (999.99). 
+//      Your system may expect commas. Use System.Globalization.CultureInfo("en-US") 
+//      with TryParse to handle this.
 //
 // 4. Write a function parseCSV that:
-//    - Takes a list of lines (skip the header line)
+//    - Takes a list of lines (skip the header line using List.tail)
 //    - Uses List.choose with parseLine to get only valid records
 //    - Returns list of SalesRecord
 
 
 // Part 3: Data Analysis
 // 5. Calculate total revenue (price * quantity for all products)
+//    - Hint: Use List.sumBy
 //
 // 6. Find the most expensive product (highest price)
-//    - Return Option<SalesRecord> (Some if found, None if empty list)
+//    - Sort by price descending and take first
+//    - Return a SalesRecord
 //
 // 7. Group products by Category and calculate:
 //    - Total revenue per category
 //    - Product count per category
-//    - Result: list of (Category, TotalRevenue, ProductCount)
+//    - Result: list of formatted strings (one per category)
+//    - Hint: You can use String.concat "\n" to join strings with newlines
 //
 // 8. Find top 3 products by revenue (price * quantity)
+//    - Calculate revenue for each product
 //    - Sort by revenue descending
 //    - Take first 3
+//    - Format as numbered list
 
 
 // Part 4: Output
@@ -89,20 +97,23 @@ Table,Furniture,450.00,2"""
 // - To split line by comma: line.Split(',')
 // - Array access: arr.[0], arr.[1], etc.
 // - TryParse returns (bool, value) tuple
-// - Revenue = price * quantity
+// - Revenue = price * float quantity
+// - For parsing prices with dots: System.Globalization.CultureInfo("en-US")
+// - To join strings with newlines: String.concat "\n" stringList
+// - To number items: List.zip ["1"; "2"; "3"] items
 
 
 // EXPECTED OUTPUT:
 (*
-Total Revenue: $16182.33
+Total Revenue: $11382.42
 Most Expensive: Laptop ($999.99)
 
 Revenue by Category:
-  Electronics: $11582.33 (4 products)
-  Furniture: $4600.00 (3 products)
+  Electronics: $8382.45 (4 products)
+  Furniture: $2999.97 (3 products)
 
 Top 3 Products by Revenue:
   1. Laptop: $4999.95
   2. Monitor: $2100.00
-  3. Keyboard: $900.00
+  3. Chair: $1200.00
 *)
